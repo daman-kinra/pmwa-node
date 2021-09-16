@@ -8,9 +8,9 @@ exports.requresLogin = async (req, res, next) => {
       req.user = decode;
       next();
     } else {
-      return res.status(400).json({ error: { code: "unauthorized" } });
+      return res.json({ error: { code: "unauthorized" } });
     }
   } catch (error) {
-    return res.status(400).json(error);
+    return res.json({ error });
   }
 };

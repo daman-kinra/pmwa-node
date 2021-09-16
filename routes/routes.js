@@ -23,7 +23,9 @@ route.post("/register", async (req, res) => {
       username,
     });
     await singleUser.save();
-    const token = jwt.sign({ _id: singleUser._id }, "secret");
+    const token = jwt.sign({ _id: singleUser._id }, "secret", {
+      expiresIn: "1h",
+    });
     return res.json({ user: singleUser, token });
   } catch (error) {
     console.log(err);
@@ -45,7 +47,9 @@ route.post("/login", async (req, res) => {
     if (!isPasswordMatched) {
       return res.json({ error: { code: "wrong password" } });
     }
-    const token = jwt.sign({ _id: singleUser._id }, "secret");
+    const token = jwt.sign({ _id: singleUser._id }, "secret", {
+      expiresIn: "1h",
+    });
     return res.json({ user: singleUser, token });
   } catch (error) {
     console.log(error);
