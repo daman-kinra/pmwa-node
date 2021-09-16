@@ -16,6 +16,19 @@ const user = db.Schema(
     profileImageUrl: {
       type: String,
     },
+    requests: {
+      type: [
+        {
+          projectName: String,
+          projectOwner: String,
+          projectOwnerName: String,
+          projectId: String,
+        },
+      ],
+    },
+    projects: {
+      type: [String],
+    },
   },
   { timestamps: true }
 );
